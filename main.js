@@ -21,6 +21,9 @@ new Promise((resolve, reject) => {
         }
     ];
     prompt(question).then(answers => {
+        if (Object.keys(answers).length === 0) {
+            process.exit(1);
+        }
 
         const User = sequelize.define('user', {
             username: Sequelize.STRING,
