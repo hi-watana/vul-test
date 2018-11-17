@@ -2,6 +2,9 @@
   "name": "vul-test",
   "version": "0.0.1",
   "private": true,
+  "scripts": {
+    "setup": "rm -rf database.sqlite3 && sqlite3 database.sqlite3 < init.sql"
+  },
   "dependencies": {
     "enquirer": "^2.0.7",
     "prompt-password": "^1.2.0",
