@@ -49,14 +49,17 @@ new Promise(function(resolve, reject) {
         }
     ];
     prompt(question).then(answers => {
-        let item_name = answers['item_name'];
+        var item_name = answers['item_name'];
+        if (item_name == null) {
+            var item_name = '';
+        }
         sequelize.query('SELECT item_name, price FROM `items` WHERE user_id = :user_id AND item_name LIKE :item_name', {
             replacements: {
                 user_id: [user_id],
                 item_name: [`%${item_name}%`]
             }
         }).spread((results, metadata) => {
-            console.log('\n\n', metadata, '\n\n', `\n${results.length} items found:`);
+            console.log('\n\nExecuted query:\n\033[1m', metadata['sql'], '\033[0m\n\n', `\n${results.length} items found:`);
             results.forEach(i => console.log(i));
             process.exit(0);
         });
