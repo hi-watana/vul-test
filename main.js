@@ -7,7 +7,7 @@ const sequelize = new Sequelize('', '', '', {
     logging: false
 });
 
-new Promise(function(resolve, reject) {
+new Promise((resolve, reject) => {
     let question = [
         {
             type: 'input',
@@ -40,7 +40,7 @@ new Promise(function(resolve, reject) {
             resolve(res[0]['dataValues']['id']);
         });
     });
-}).then(function(user_id) {
+}).then(user_id => {
     let question = [
         {
             type: 'input',
@@ -53,6 +53,10 @@ new Promise(function(resolve, reject) {
         if (item_name == null) {
             var item_name = '';
         }
+
+        // Essential point
+        // This part contains a critical vulnerability.
+        // (ref: https://nvd.nist.gov/vuln/detail/CVE-2016-10556)
         sequelize.query('SELECT item_name, price FROM `items` WHERE user_id = :user_id AND item_name LIKE :item_name', {
             replacements: {
                 user_id: [user_id],
