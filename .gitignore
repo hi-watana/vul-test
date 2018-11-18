@@ -63,3 +63,5 @@ typings/
 database.sqlite3
 .*.swp
 *~
+.vscode/
+tags
