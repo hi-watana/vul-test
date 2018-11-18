@@ -21,7 +21,7 @@ new Promise((resolve, reject) => {
         }
     ];
     prompt(question).then(answers => {
-        if (Object.keys(answers).length === 0) {
+        if (Object.keys(answers).length !== 2) {
             process.exit(1);
         }
 
