@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node main.js",
     "setup": "rm -rf database.sqlite3 && sqlite3 database.sqlite3 < init.sql"
   },
   "dependencies": {
