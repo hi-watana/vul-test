@@ -5,7 +5,7 @@ This is a repository for analysis of **vulnerability** ([CVE-2016-10556](https:/
 
 * **Initialization**:
 ```
-npm run setup
+npm install && npm run setup
 ```
 
 * **Run app**:
