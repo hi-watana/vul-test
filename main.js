@@ -21,9 +21,6 @@ new Promise((resolve, reject) => {
         }
     ];
     prompt(question).then(answers => {
-        if (Object.keys(answers).length !== 2) {
-            process.exit(1);
-        }
 
         const User = sequelize.define('user', {
             username: Sequelize.STRING,
@@ -34,7 +31,10 @@ new Promise((resolve, reject) => {
 
         User.findAll({
             attributes: ['id'],
-            where: answers
+            where: {
+                username: answers['username'],
+                password: answers['password']
+            }
         }).then(res => {
             if (res.length === 0) {
                 console.log('\033[031mInvalid username or password\033[0m');
